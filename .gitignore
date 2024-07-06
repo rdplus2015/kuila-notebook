@@ -34,5 +34,6 @@ htmlcov/
 /static/
 
 # Ignore environment configuration files
-/.env/
+/.venv/
 .config_env
+
