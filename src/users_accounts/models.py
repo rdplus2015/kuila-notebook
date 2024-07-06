@@ -1,9 +1,8 @@
-from django.db import models
 
-# Create your models here.
+# users_accounts/models.py
 
-from django.contrib.auth.base_user import BaseUserManager
-from django.contrib.auth.models import AbstractUser, PermissionsMixin, Group, Permission
+from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
+from django.contrib.auth.models import PermissionsMixin, Group, Permission
 from django.db import models
 
 
@@ -17,32 +16,20 @@ class KuilaUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
     def create_superuser(self, email, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
-
         return self.create_user(email, password, **extra_fields)
 
 
-class KuilaUser(AbstractUser, PermissionsMixin):
+class KuilaUser(AbstractBaseUser, PermissionsMixin):
     username = None
     email = models.EmailField(unique=True, blank=False, max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
-
-    # Ajouter des related_name pour éviter les conflits
-    groups = models.ManyToManyField(
-        Group,
-        related_name='kuilauser_set',
-        blank=True
-    )
-    user_permissions = models.ManyToManyField(
-        Permission,
-        related_name='kuilauser_set',
-        blank=True
-    )
 
     objects = KuilaUserManager()
     USERNAME_FIELD = 'email'

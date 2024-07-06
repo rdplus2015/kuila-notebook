@@ -1,11 +1,7 @@
-from django.db import models
-
-# Create your models here.
+# users_profiles model
 
 from django.conf import settings
 from django.db import models
-
-# Create your models here.
 
 
 class KuilaUserProfile(models.Model):
@@ -15,4 +11,4 @@ class KuilaUserProfile(models.Model):
     phone_number = models.CharField(max_length=15, blank=True)
 
     def __str__(self):
-        return f'{self.first_name} - {self.last_name}'
+        return f'{self.first_name} {self.last_name}'
