@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div>
+            <label for="id_email">Email:</label>
+            {{ form.username }}
+            {% if form.username.errors %}
+                    <div class="error">{{ form.username.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="id_password">Password:</label>
+            {{ form.password }}
+            {% if form.password.errors %}
+                <div class="error">{{ form.password.errors }}</div>
+            {% endif %}
+        </div>
+        <div>
+            <input type="submit" value="Connexion">
+        </div>
+    </form>
+</body>
+</html>

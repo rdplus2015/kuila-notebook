@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title%}
+    <title> Index page </title>
+{% endblock %}
+
+{% block content %}
+<h1>Welcome to Kuila Notebook </h1>
+<div>
+    <nav>
+        {% if user.is_authenticated %}
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+                <a href="{% url 'dashboard' %}">Dashboard</a>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'signup' %}">SignUP</a>
+        {% endif %}
+    </nav>
+</div>
+</body>
+{% endblock %}
