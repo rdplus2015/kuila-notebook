@@ -36,4 +36,6 @@ htmlcov/
 # Ignore environment configuration files
 /.venv/
 .config_env
+note
+
 

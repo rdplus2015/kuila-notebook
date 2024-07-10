@@ -7,10 +7,6 @@
 <body>
     <h1> DASHBOARD </h1>
     {{ user.email }} <p>is connected</p>
-    <form method="post" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-        <a href="{% url 'home' %}">Home</a>
-    </form>
+    {% include 'registration/logout.html' %}
 </body>
 </html>

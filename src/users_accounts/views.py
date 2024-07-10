@@ -63,3 +63,4 @@ class UserLogout(LogoutView):
         """Prevents logout via GET request."""
         return HttpResponseNotAllowed(['POST'])
 
+

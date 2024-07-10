@@ -9,14 +9,13 @@
 <div>
     <nav>
         {% if user.is_authenticated %}
-            <form method="post" action="{% url 'logout' %}">
-                {% csrf_token %}
-                <button type="submit">Logout</button>
-                <a href="{% url 'dashboard' %}">Dashboard</a>
-            </form>
+            {% include 'registration/logout.html'%}
+            <a href="{% url 'dashboard' %}">Dashboard</a>
+
         {% else %}
             <a href="{% url 'login' %}">Login</a>
             <a href="{% url 'signup' %}">SignUP</a>
+            <a href="{% url 'password_reset' %}">Reset your password</a>
         {% endif %}
     </nav>
 </div>
