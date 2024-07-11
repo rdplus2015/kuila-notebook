@@ -17,11 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from kuila.views import Home, Dashboard
+from kuila.views import Home, Dashboard, SettingsView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', Home.as_view(), name='home'),
-    path('dashboard', Dashboard.as_view(), name='dashboard'),
-    path('', include('users_accounts.urls'))
+    path('', include('users_accounts.urls')),
+    path('', include('users_profiles.urls')),
+    path('admin/', admin.site.urls),
+    path('dashboard/', Dashboard.as_view(), name='dashboard'),
+    path('settings/', SettingsView.as_view(), name='settings'),
 ]

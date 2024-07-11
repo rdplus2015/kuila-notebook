@@ -1,0 +1,23 @@
+{% extends "notebook/base.html" %}
+
+{% block title %} Settings {% endblock %}
+
+{% block content %}
+    <h1>Settings </h1>
+    <div>
+        <p> Content 1 </p>
+        <p> {{ user.profile.first_name }}</p>
+        <p> {{ user.email }}</p>
+        <a href="{% url 'profile' %}"> Consulter votre profile </a>
+    </div>
+    <div>
+        <p> Security zone 2 </p>
+    </div>
+    <div>
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+          <a href="{% url 'update_kuila_user_username' %}">change my user name </a>
+        <a href="{% url 'update_kuila_user_password' %}">change password </a>
+        <a href="{% url 'delete_kuila_user' %}">delete my account </a>
+    </div>
+{% endblock %}
+

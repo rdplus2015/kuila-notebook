@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+    <header>
+        <div>
+            <p> <mark> {{ user.email }} </mark>  is connected </p>
+            <a href="{% url 'settings' %} "> settings </a>
+        </div>
+        <div>
+            {% include 'registration/logout.html' %}
+        </div>
+    </header>
+    <div>
+        {% block content %} {% endblock %}
+    </div>
+</body>
+</html>
