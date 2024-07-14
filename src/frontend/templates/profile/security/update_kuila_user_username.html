@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-    <div>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.email }}
-            <input type="submit" value="Update your profile ">
-        </form>
-    </div>
-</body>
-</html>
+{% extends 'base.html'%}
+
+{% block title %} Update your profile {% endblock %}
+
+{% block content %}
+<div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.email }}
+        <input type="submit" value="Update your username ">
+        <a href="{% url 'settings' %}">No, take me back</a>
+    </form>
+</div>
+{% endblock %}

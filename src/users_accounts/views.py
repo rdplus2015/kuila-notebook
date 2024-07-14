@@ -14,7 +14,7 @@ from users_accounts.models import KuilaUser
 
 
 class SignUp(View):
-    template_name = 'registration/signup.html'
+    template_name = 'index.html'
 
     def get(self, request):
         if request.user.is_authenticated:
@@ -43,7 +43,7 @@ class SignUp(View):
 
 
 class UserLogin(LoginView):
-    template_name = 'registration/login.html'
+    template_name = 'index.html'
     redirect_authenticated_user = True
 
     def get_success_url(self):

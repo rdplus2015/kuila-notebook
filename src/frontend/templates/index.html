@@ -1,23 +1,36 @@
-{% extends "base.html" %}
-
-{% block title%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <title> Index page </title>
-{% endblock %}
+</head>
+<body>
+    <h1>Welcome to Kuila Notebook </h1>
+    <div>
+        <div>
+            {% if user.is_authenticated %}
+                <div>
+                    {% include 'registration/logout.html'%}
+                </div>
+                <div>
+                    <a href="{% url 'dashboard' %}">Dashboard</a>
+                </div>
 
-{% block content %}
-<h1>Welcome to Kuila Notebook </h1>
-<div>
-    <nav>
-        {% if user.is_authenticated %}
-            {% include 'registration/logout.html'%}
-            <a href="{% url 'dashboard' %}">Dashboard</a>
-
-        {% else %}
-            <a href="{% url 'login' %}">Login</a>
-            <a href="{% url 'signup' %}">SignUP</a>
-            <a href="{% url 'password_reset' %}">Reset your password</a>
-        {% endif %}
-    </nav>
-</div>
+            {% else %}
+                <div>
+                   {% include 'registration/login.html' %}
+                    <p> <a href="{% url 'password_reset' %}">Reset your password</a></p>
+                </div>
+                <h3> or </h3>
+                <div>
+                    {% include 'registration/signup.html' %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div>
+        <p><a href="{% url 'login' %} ">Login </a></p>
+        <p><a href="{% url 'signup' %} ">Signup </a></p>
+    </div>
 </body>
-{% endblock %}
+</html>

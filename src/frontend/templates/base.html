@@ -2,11 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    {% block title %}}
-        <title> base template page </title>
-    {% endblock %}
+    <title>{% block title %} {% endblock %}</title>
 </head>
 <body>
-    {% block content %} {% endblock %}
+    <header>
+        <div>
+            <p> <mark> {{ user.email }} </mark>  is connected </p>
+            <a href="{% url 'settings' %} "> settings </a>
+        </div>
+        <div>
+            {% include 'registration/logout.html' %}
+        </div>
+    </header>
+    <div>
+        {% block content %} {% endblock %}
+    </div>
 </body>
 </html>
