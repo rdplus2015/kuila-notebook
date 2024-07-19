@@ -23,6 +23,7 @@ urlpatterns = [
     path('', Home.as_view(), name='home'),
     path('', include('users_accounts.urls')),
     path('', include('users_profiles.urls')),
+    path('', include('notebook.urls')),
     path('admin/', admin.site.urls),
     path('dashboard/', Dashboard.as_view(), name='dashboard'),
     path('settings/', SettingsView.as_view(), name='settings'),

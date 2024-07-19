@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users_accounts',
     'users_profiles',
+    'notebook',
 ]
 
 MIDDLEWARE = [
