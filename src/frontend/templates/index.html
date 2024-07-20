@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title> Index page </title>
-</head>
-<body>
-    <h1>Welcome to Kuila Notebook </h1>
+{% extends 'base.html' %}
+
+{% block title%} Home {% endblock %}
+
+{% block content %}
+
+<h1>Welcome to Kuila Notebook </h1>
     <div>
         <div>
             {% if user.is_authenticated %}
@@ -18,19 +17,10 @@
 
             {% else %}
                 <div>
-                   {% include 'registration/login.html' %}
-                    <p> <a href="{% url 'password_reset' %}">Reset your password</a></p>
-                </div>
-                <h3> or </h3>
-                <div>
-                    {% include 'registration/signup.html' %}
+                    <p><a href="{% url 'login' %} ">Login </a></p>
+                    <p><a href="{% url 'signup' %} ">Signup </a></p>
                 </div>
             {% endif %}
         </div>
     </div>
-    <div>
-        <p><a href="{% url 'login' %} ">Login </a></p>
-        <p><a href="{% url 'signup' %} ">Signup </a></p>
-    </div>
-</body>
-</html>
+{% endblock %}

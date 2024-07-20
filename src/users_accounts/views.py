@@ -11,10 +11,11 @@ from django.views.generic import DeleteView, UpdateView
 
 from users_accounts.form import SignUpForm, UserUpdateForm
 from users_accounts.models import KuilaUser
+from utils.mixins import KuilaLoginRequiredMixin
 
 
 class SignUp(View):
-    template_name = 'index.html'
+    template_name = 'registration/signup.html'
 
     def get(self, request):
         if request.user.is_authenticated:
@@ -43,7 +44,7 @@ class SignUp(View):
 
 
 class UserLogin(LoginView):
-    template_name = 'index.html'
+    template_name = 'registration/login.html'
     redirect_authenticated_user = True
 
     def get_success_url(self):
@@ -53,8 +54,7 @@ class UserLogin(LoginView):
         return reverse('dashboard')
 
 
-@method_decorator(login_required, name='dispatch')
-class UserLogout(LogoutView):
+class UserLogout(KuilaLoginRequiredMixin, LogoutView):
     next_page = reverse_lazy('home')
 
     def post(self, request, *args, **kwargs):
@@ -68,8 +68,7 @@ class UserLogout(LogoutView):
         return HttpResponseNotAllowed(['POST'])
 
 
-@method_decorator(login_required, name='dispatch')
-class UserUpdate(UpdateView):
+class UserUpdate(KuilaLoginRequiredMixin, UpdateView):
     model = get_user_model()
     form_class = UserUpdateForm
     template_name = 'profile/security/update_kuila_user_username.html'
@@ -80,8 +79,7 @@ class UserUpdate(UpdateView):
         return self.request.user
 
 
-@method_decorator(login_required, name='dispatch')
-class DeleteUser(DeleteView):
+class DeleteUser(KuilaLoginRequiredMixin, DeleteView):
     model = KuilaUser
     template_name = 'profile/security/delete_kuila_user.html'
     success_url = reverse_lazy('home')
