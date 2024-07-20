@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users_accounts',
     'users_profiles',
+    'utils',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +139,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # AUTH
 AUTH_USER_MODEL = 'users_accounts.KuilaUser'
+
+# URLS
+#LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

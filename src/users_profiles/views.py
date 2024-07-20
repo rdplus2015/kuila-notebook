@@ -5,12 +5,12 @@ from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, UpdateView
 
 from users_profiles.models import KuilaUserProfile
+from utils.mixins import KuilaLoginRequiredMixin
 
 
 # Create your views here.
 
-@method_decorator(login_required, name='dispatch')
-class UserProfile(DetailView):
+class UserProfile(KuilaLoginRequiredMixin, DetailView):
     model = KuilaUserProfile()
     template_name = 'profile/index.html'
     context_object_name = 'user_profile'
@@ -21,7 +21,7 @@ class UserProfile(DetailView):
         return user_profile
 
 
-class UserProfileUpdate(UpdateView):
+class UserProfileUpdate(KuilaLoginRequiredMixin, UpdateView):
     model = KuilaUserProfile
     fields = ['first_name', 'last_name', 'phone_number']
     template_name = 'profile/update.html'
@@ -34,4 +34,3 @@ class UserProfileUpdate(UpdateView):
         if form.instance.user != self.request.user:
             return redirect('profile')
         return super().form_valid(form)
-
