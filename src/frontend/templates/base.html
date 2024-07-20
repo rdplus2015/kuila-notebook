@@ -6,6 +6,7 @@
 </head>
 <body>
     <header>
+        {% if user.is_authenticated %}
         <div>
             <p> <mark> {{ user.email }} </mark>  is connected </p>
             <a href="{% url 'settings' %} "> settings </a>
@@ -13,9 +14,24 @@
         <div>
             {% include 'registration/logout.html' %}
         </div>
+        {% else %}
+        <div>
+            Kuila notebook
+            <a href="{% url 'home' %} "> Home </a>
+        </div>
+        {% endif %}
     </header>
     <div>
         {% block content %} {% endblock %}
+    </div>
+    <div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     </div>
 </body>
 </html>
