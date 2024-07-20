@@ -62,6 +62,9 @@ INSTALLED_APPS = [
     'users_accounts',
     'users_profiles',
     'utils',
+    'ckeditor_uploader',
+    'notebook_folders',
+    'notebook',
 ]
 
 MIDDLEWARE = [
@@ -141,6 +144,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users_accounts.KuilaUser'
 
 # URLS
-#LOGIN_URL = '/login/'
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'

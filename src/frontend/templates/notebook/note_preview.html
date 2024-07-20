@@ -3,20 +3,19 @@
 {% block title %} Dashboard {% endblock %}
 
 {% block content %}
-    <h1>Notebook : Dashboard </h1>
-    <a href=" {% url 'note_create' %} " >Create note </a>
+    <h1>Notebook : Preview </h1>
     <div>
-        {% for note in notes %}
         <div>
             <h3> {{note.title}}</h3>
+            <p>{{ note.content}}</p>
             <p>{{ note.updated_at}}</p>
+            <p>{{ note.created_at}}</p>
             <div>
+                <a href=" {% url  'dashboard' %} " > Close </a>
                 <a href=" {% url  'note_update' pk=note.id %} " > Edit </a>
-                <a href=" {% url  'note_preview' pk=note.id %} " > Preview </a>
                 <a href=" {% url 'note_delete' pk=note.id %} " > Delete </a>
             </div>
 
         </div>
-        {% endfor %}
     </div>
 {% endblock %}
