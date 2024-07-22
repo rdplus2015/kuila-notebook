@@ -1,17 +1,15 @@
 from django.contrib.auth import login, get_user_model
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponseNotAllowed
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
-from django.utils.decorators import method_decorator
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.views import View
 from django.views.generic import DeleteView, UpdateView
 
 from users_accounts.form import SignUpForm, UserUpdateForm
 from users_accounts.models import KuilaUser
-from utils.mixins import KuilaLoginRequiredMixin
+from kuila.mixins import KuilaLoginRequiredMixin
 
 
 class SignUp(View):

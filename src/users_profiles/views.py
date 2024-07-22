@@ -1,11 +1,9 @@
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, UpdateView
 
 from users_profiles.models import KuilaUserProfile
-from utils.mixins import KuilaLoginRequiredMixin
+from kuila.mixins import KuilaLoginRequiredMixin
 
 
 # Create your views here.

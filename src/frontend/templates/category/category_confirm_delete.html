@@ -5,7 +5,7 @@
 
 
 {% block content %}
- <p>DO you want to Delete "{{note.title}}"</p>
+ <p>DO you want to Delete "{{category.name}}"</p>
 <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}

@@ -1,4 +1,3 @@
-# utils/mixins.py
 
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 
@@ -11,6 +10,9 @@ class KuilaLoginRequiredMixin(LoginRequiredMixin):
         from django.contrib import messages
         messages.add_message(self.request, messages.INFO, 'You need to be logged in to view this page.')
         return super().handle_no_permission()
+
+
+
 
 
 """

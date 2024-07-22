@@ -61,9 +61,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users_accounts',
     'users_profiles',
-    'utils',
     'ckeditor_uploader',
-    'notebook_folders',
+    'categories',
     'notebook',
 ]
 

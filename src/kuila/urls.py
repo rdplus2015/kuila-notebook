@@ -17,17 +17,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from kuila.views import Home, SettingsView
-
+from kuila.views import Home, SettingsView, Dashboard
 
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('dashboard/', Dashboard.as_view(), name='dashboard'),
+    path('settings/', SettingsView.as_view(), name='settings'),
     path('', Home.as_view(), name='home'),
+
     path('', include('users_accounts.urls')),
     path('', include('users_profiles.urls')),
     path('', include('notebook.urls')),
-    path('admin/', admin.site.urls),
-    path('settings/', SettingsView.as_view(), name='settings'),
-]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('', include('categories.urls')),
+]
