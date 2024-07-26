@@ -33,6 +33,11 @@ htmlcov/
 # Ignore compiled static files directory
 /static/
 
+
+# Ignore Django staticfiles and media
+/staticfiles/
+/media/
+
 # Ignore environment configuration files
 /.venv/
 .config_env

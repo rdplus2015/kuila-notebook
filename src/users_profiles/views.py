@@ -21,7 +21,7 @@ class UserProfile(KuilaLoginRequiredMixin, DetailView):
 
 class UserProfileUpdate(KuilaLoginRequiredMixin, UpdateView):
     model = KuilaUserProfile
-    fields = ['first_name', 'last_name', 'phone_number']
+    fields = ['avatar', 'first_name', 'last_name', 'phone_number']
     template_name = 'profile/update.html'
     success_url = reverse_lazy('profile')
 

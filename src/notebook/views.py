@@ -73,7 +73,3 @@ class NoteDeleteView(KuilaLoginRequiredMixin, DeleteView):
     def get_object(self, queryset=None):
         pk = self.kwargs.get('pk')
         return get_object_or_404(Note, id=pk, user=self.request.user)
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)

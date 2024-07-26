@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'categories',
     'notebook',
     'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -161,6 +162,37 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 
-# CKEditor config
-
+# CKEDITOR CONFIG
 CKEDITOR_UPLOAD_PATH = 'uploads/ckeditor/'
+# settings.py
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': [
+            {'name': 'document', 'items': ['Save', 'NewPage', 'ExportPdf', 'Preview', 'Print', 'Templates']},
+            {'name': 'clipboard', 'items': ['Copy', 'Paste', 'PasteText', '-', 'Undo', 'Redo']},
+            {'name': 'editing', 'items': ['Find', 'SelectAll']},
+            {'name': 'basicstyles', 'items': [
+                'Bold', 'Italic', 'Strike', 'Subscript', 'Superscript', '-', 'CopyFormatting', 'RemoveFormat'
+            ]},
+            {'name': 'paragraph', 'items': [
+                'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-',
+                'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Language'
+            ]},
+            {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
+            {'name': 'insert', 'items': ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar']},
+            {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
+            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+            {'name': 'tools', 'items': ['Maximize']}
+        ],
+        'height': 400,
+        'width': '100%',
+        'toolbarCanCollapse': True,
+        'extraPlugins': ','.join([
+            'exportpdf',  # Plugin pour l'exportation en PDF
+            'copyformatting',  # Plugin pour copier la mise en forme
+            'divarea',  # Utiliser le mode d'édition div
+        ]),
+    },
+}
+

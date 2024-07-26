@@ -1,14 +1,21 @@
-{% extends 'base.html'%}
-
-{% block title %} Profil {% endblock %}
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Profil{% endblock %}
 
 {% block content %}
 <div>
-    <p> {{ user_profile.first_name }}</p>
-    <p> {{ user_profile.last_name }}</p>
-    <p> {{ user_profile.user }}</p>
-    <p> {{ user_profile.phone_number }}</p>
-    <p><a href="{% url 'profile_update' %} " >Update your informations </a></p>
-    <p><a href="{% url 'settings' %} " >Go back to settings </a></p>
+    {% if user_profile.avatar %}
+        <p><img src="{{ user_profile.avatar.url }}" alt="Avatar of {{ user_profile.username }}" width="150"></p>
+    {% else %}
+        <img src="{% static 'avatars/defaultavatar.png' %}" alt="default avatar">
+        <p>Avatar not available</p>
+    {% endif %}
+
+    <p>{{ user_profile.first_name }}</p>
+    <p>{{ user_profile.last_name }}</p>
+    <p>{{ user_profile.user }}</p>
+    <p>{{ user_profile.phone_number }}</p>
+    <p><a href="{% url 'profile_update' %}">Update your information</a></p>
+    <p><a href="{% url 'settings' %}">Go back to settings</a></p>
 </div>
 {% endblock %}
