@@ -61,9 +61,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users_accounts',
     'users_profiles',
-    'ckeditor_uploader',
     'categories',
     'notebook',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -133,6 +133,19 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# Static files directory
+STATICFILES_DIRS = [
+    BASE_DIR / 'frontend/static'
+]
+
+# Directory to collect static files for deployment
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Directory for downloaded files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -146,3 +159,8 @@ AUTH_USER_MODEL = 'users_accounts.KuilaUser'
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+
+# CKEditor config
+
+CKEDITOR_UPLOAD_PATH = 'uploads/ckeditor/'

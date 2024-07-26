@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 
+from categories.models import Category
 from notebook.models import Note
 from kuila.mixins import KuilaLoginRequiredMixin
 
@@ -34,6 +35,11 @@ class NoteCreateView(KuilaLoginRequiredMixin, CreateView):
     fields = ['title', 'content', 'category']
     success_url = reverse_lazy('dashboard')
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['category'].queryset = Category.objects.filter(user=self.request.user)
+        return form
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
@@ -44,6 +50,11 @@ class NoteUpdateView(KuilaLoginRequiredMixin, UpdateView):
     fields = ['title', 'content', 'category']
     template_name = 'note/note_form_update.html'
     success_url = reverse_lazy('dashboard')
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['category'].queryset = Category.objects.filter(user=self.request.user)
+        return form
 
     def get_object(self, queryset=None):
         pk = self.kwargs.get('pk')

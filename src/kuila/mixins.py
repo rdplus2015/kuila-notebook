@@ -16,27 +16,6 @@ class KuilaLoginRequiredMixin(LoginRequiredMixin):
 
 
 """
-class CustomPermissionRequiredMixin(PermissionRequiredMixin):
-    permission_required = 'your_app.your_permission'
-    login_url = '/login/'
-    redirect_field_name = 'next'
-
-    def handle_no_permission(self):
-        from django.contrib import messages
-        messages.add_message(self.request, messages.INFO, 'You do not have permission to view this page.')
-        return super().handle_no_permission()
-
-class CustomUserPassesTestMixin(UserPassesTestMixin):
-    login_url = '/login/'
-    redirect_field_name = 'next'
-
-    def test_func(self):
-        return self.request.user.is_superuser
-
-    def handle_no_permission(self):
-        from django.contrib import messages
-        messages.add_message(self.request, messages.INFO, 'You do not have permission to view this page.')
-        return super().handle_no_permission()
 
 class SetUserInFormMixin:
     def form_valid(self, form):
