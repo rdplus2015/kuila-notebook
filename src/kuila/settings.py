@@ -64,7 +64,6 @@ INSTALLED_APPS = [
     'categories',
     'notebook',
     'ckeditor',
-    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -164,6 +163,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 # CKEDITOR CONFIG
 CKEDITOR_UPLOAD_PATH = 'uploads/ckeditor/'
+CKEDITOR_ALLOW_NONIMAGE_FILES = False  # allow only image
 # settings.py
 
 CKEDITOR_CONFIGS = {
@@ -180,7 +180,7 @@ CKEDITOR_CONFIGS = {
                 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Language'
             ]},
             {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
-            {'name': 'insert', 'items': ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar']},
+            {'name': 'insert', 'items': ['Table', 'HorizontalRule', 'Smiley', 'SpecialChar']},
             {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
             {'name': 'tools', 'items': ['Maximize']}
