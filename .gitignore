@@ -35,8 +35,8 @@ htmlcov/
 
 
 # Ignore Django staticfiles and media
-staticfiles/
-media/
+/staticfiles/
+/media/
 /static/ckeditor/
 
 # Ignore environment configuration files
