@@ -7,7 +7,6 @@
     {% if user_profile.avatar %}
         <p><img src="{{ user_profile.avatar.url }}" alt="Avatar of {{ user_profile.username }}" width="150"></p>
     {% else %}
-        <img src="{% static 'avatars/defaultavatar.png' %}" alt="default avatar">
         <p>Avatar not available</p>
     {% endif %}
 

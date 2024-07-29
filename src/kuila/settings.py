@@ -11,47 +11,39 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-
 import environ
 
-# Initialize environ
+# Base directory for the project, used to build paths for other files
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Initialize environment variables
 env = environ.Env()
 
-# Load environment variables from .env file
+# Load environment variables from the specified file
 environ.Env.read_env('.config_env')
 
-# DEBUG mode
+# Debug mode settings
 DEBUG = env.bool('DEBUG', default=False)
 
-# Secret key
+# Secret key for cryptographic signing
 SECRET_KEY = env('SECRET_KEY')
 
-# Allowed hosts
+# List of allowed hosts for the application
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost', '127.0.0.1'])
 
 # Security settings
-SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT', default=False)
-SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE', default=False)
-CSRF_COOKIE_SECURE = env.bool('CSRF_COOKIE_SECURE', default=False)
-SECURE_BROWSER_XSS_FILTER = env.bool('SECURE_BROWSER_XSS_FILTER', default=True)
-SECURE_CONTENT_TYPE_NOSNIFF = env.bool('SECURE_CONTENT_TYPE_NOSNIFF', default=True)
+SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT', default=False)  # Redirect all HTTP requests to HTTPS
+SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE', default=False)  # Use secure cookies for sessions
+CSRF_COOKIE_SECURE = env.bool('CSRF_COOKIE_SECURE', default=False)  # Use secure cookies for CSRF protection
+SECURE_BROWSER_XSS_FILTER = env.bool('SECURE_BROWSER_XSS_FILTER', default=True)  # Enable the browser's XSS filter
+SECURE_CONTENT_TYPE_NOSNIFF = env.bool('SECURE_CONTENT_TYPE_NOSNIFF', default=True)  # Prevent browsers from interpreting files as different MIME types
 
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+# Database settings
 DATABASES = {
-    'default': env.db(),
+    'default': env.db(),  # Load database configuration from environment variables
 }
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -63,9 +55,10 @@ INSTALLED_APPS = [
     'users_profiles',
     'categories',
     'notebook',
-    'ckeditor',
+    'ckeditor',  # CKEditor for rich text editing
 ]
 
+# Middleware configuration
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -76,12 +69,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# URL configuration
 ROOT_URLCONF = 'kuila.urls'
 
+# Template configuration
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'frontend/templates'],
+        'DIRS': [BASE_DIR / 'frontend/templates'],  # Directory for template files
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -94,12 +89,10 @@ TEMPLATES = [
     },
 ]
 
+# WSGI application
 WSGI_APPLICATION = 'kuila.wsgi.application'
 
-
 # Password validation
-# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -115,57 +108,35 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/5.0/topics/i18n/
-
+# Internationalization settings
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
-
-STATIC_URL = 'static/'
-
-# Static files directory
+# Static files (CSS, JavaScript, Images) settings
+STATIC_URL = 'static/'  # URL for serving static files
 STATICFILES_DIRS = [
-    BASE_DIR / 'frontend/static'
+    BASE_DIR / 'frontend/static'  # Directory for additional static files
 ]
-
-# Directory to collect static files for deployment
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-# Directory for downloaded files
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Directory for collected static files
+MEDIA_URL = '/media/'  # URL for serving media files
+MEDIA_ROOT = BASE_DIR / 'media'  # Directory for uploaded media files
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Authentication settings
+AUTH_USER_MODEL = 'users_accounts.KuilaUser'  # Custom user model
 
-# AUTH
-AUTH_USER_MODEL = 'users_accounts.KuilaUser'
-
-# URLS
+# URL redirection settings for authentication
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-
-# CKEDITOR CONFIG
-CKEDITOR_UPLOAD_PATH = 'uploads/ckeditor/'
-CKEDITOR_ALLOW_NONIMAGE_FILES = False  # allow only image
-# settings.py
-
+# CKEditor configuration
+CKEDITOR_UPLOAD_PATH = 'uploads/ckeditor/'  # Path for uploaded CKEditor files
+CKEDITOR_ALLOW_NONIMAGE_FILES = False  # Only allow image files
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': [
@@ -189,10 +160,9 @@ CKEDITOR_CONFIGS = {
         'width': '100%',
         'toolbarCanCollapse': True,
         'extraPlugins': ','.join([
-            'exportpdf',  # Plugin pour l'exportation en PDF
-            'copyformatting',  # Plugin pour copier la mise en forme
-            'divarea',  # Utiliser le mode d'édition div
+            'exportpdf',  # Plugin for PDF export
+            'copyformatting',  # Plugin for copying formatting
+            'divarea',  # Enable div area editing mode
         ]),
     },
 }
-
