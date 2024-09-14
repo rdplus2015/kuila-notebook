@@ -5,19 +5,17 @@ from django.views.generic import DetailView, UpdateView
 from users_profiles.models import KuilaUserProfile
 from kuila.mixins import KuilaLoginRequiredMixin
 
-
 # View to display user profile details
 class UserProfile(KuilaLoginRequiredMixin, DetailView):
-    model = KuilaUserProfile()  # The model to use for this view (should use the class instead of an instance)
+    model = KuilaUserProfile  # The model to use for this view (use the class instead of an instance)
     template_name = 'profile/index.html'  # Template to render
     context_object_name = 'user_profile'  # Name of the context variable to use in the template
 
     def get_object(self, queryset=None):
         # Get the profile for the currently logged-in user
         user = self.request.user.id
-        user_profile = KuilaUserProfile.objects.get(user_id=user)
+        user_profile = KuilaUserProfile.objects.get(user_id=user)  # Retrieve the profile based on user ID
         return user_profile
-
 
 # View to update user profile details
 class UserProfileUpdate(KuilaLoginRequiredMixin, UpdateView):
@@ -28,7 +26,7 @@ class UserProfileUpdate(KuilaLoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         # Get the profile for the currently logged-in user
-        return KuilaUserProfile.objects.get(user=self.request.user)
+        return KuilaUserProfile.objects.get(user=self.request.user)  # Retrieve the profile based on the logged-in user
 
     def form_valid(self, form):
         # Ensure that the profile being updated belongs to the current user
