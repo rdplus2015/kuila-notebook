@@ -9,9 +9,17 @@ from notebook.views import NoteListView
 class Home(TemplateView):
     template_name = 'index.html'
 
+
+class Dashboard(KuilaLoginRequiredMixin, TemplateView):
+    template_name = 'main/dashboard.html'
+
+
+
+
+
+"""
 # Defines a view for the dashboard page that requires the user to be logged in.
 # It uses the 'main/dashboard.html' template and adds context data for categories and notes.
-
 
 class Dashboard(KuilaLoginRequiredMixin, TemplateView):
     template_name = 'main/dashboard.html'
@@ -30,6 +38,8 @@ class Dashboard(KuilaLoginRequiredMixin, TemplateView):
         note_view.request = self.request
         context['notes'] = note_view.get_queryset()
         return context
+"""
+
 
 
 # Defines a view for the settings page that requires the user to be logged in.

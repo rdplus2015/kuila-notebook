@@ -23,7 +23,9 @@ __pycache__/
 
 # Ignore Python and JavaScript dependency directories
 venv/
+.venv/
 env/
+.env/
 node_modules/
 
 # Ignore test coverage files
@@ -41,8 +43,5 @@ media/
 /static/ckeditor/
 
 # Ignore environment configuration files
-/.venv/
 .config_env
 note
-
-

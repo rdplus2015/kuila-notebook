@@ -1,8 +1,22 @@
 {% extends "base.html" %}
 
-{% block title %} Category list {% endblock %}
+{% block title %} Dashboard {% endblock %}
 
 {% block content %}
+
+<h1>
+    This the dashboard
+</h1>
+<div>
+    <p>
+        <a href="{% url 'note_list' %}"> Notes lists </a>
+        <a href="{% url 'category_list' %}">Categories lists</a>
+    </p>
+</div>
+
+
+<!--
+Old dashboard view
 <hr>
     <h1>Notes list </h1>
     <a href=" {% url 'note_create' %} " >Create note </a>
@@ -34,4 +48,5 @@
         </div>
         {% endfor %}
     </div>
+-->
 {% endblock %}
