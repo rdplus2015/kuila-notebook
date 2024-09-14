@@ -1,8 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 
 # Custom mixin that extends Django's LoginRequiredMixin
-
-
 class KuilaLoginRequiredMixin(LoginRequiredMixin):
     login_url = '/login/'  # URL to redirect to if the user is not logged in
     redirect_field_name = 'next'  # Name of the GET parameter to redirect to after login
@@ -14,7 +12,6 @@ class KuilaLoginRequiredMixin(LoginRequiredMixin):
         messages.add_message(self.request, messages.INFO, 'You need to be logged in to view this page.')
         return super().handle_no_permission()
 
-
 """
 The following mixins are commented out, but they provide additional functionality:
 
@@ -22,7 +19,7 @@ The following mixins are commented out, but they provide additional functionalit
 class SetUserInFormMixin:
     def form_valid(self, form):
         form.instance.user = self.request.user  # Set the user instance to the current user
-        return super().form_valid(form)
+        return super().form_valid(form)  # Proceed with the form submission
 
 # Mixin for adding extra context to the view
 class ExtraContextMixin:
@@ -31,7 +28,7 @@ class ExtraContextMixin:
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update(self.extra_context)  # Update context with extra_context
-        return context
+        return context  # Return the updated context
 
 # Mixin for paginating querysets
 class PaginationMixin:
@@ -50,7 +47,7 @@ class PaginationMixin:
             items = paginator.page(paginator.num_pages)  # If page is out of range, show last page
 
         context['items'] = items  # Add items to context
-        return context
+        return context  # Return context with paginated items
 
 # Mixin for caching views
 class CacheMixin:
@@ -69,5 +66,5 @@ class FilterQuerySetMixin:
         filter_value = getattr(self.request, 'user', None)  # Get filter value from request
         if filter_value:
             queryset = queryset.filter(**{self.filter_field: filter_value})  # Filter queryset
-        return queryset
+        return queryset  # Return the filtered queryset
 """
